@@ -1,0 +1,26 @@
+:root {
+  --main-bg-color: #93e1d8;
+  --secondary-bg-color: #ffa69e;
+  --font-color: #ddfff7;
+  --bright-color: #861657;
+  --less-bright-color: #aa4465;
+}
+body {
+  background-color: var(--main-bg-color);
+  color: var(--bright-color);
+}
+
+.loginDiv {
+  background-color: var(--main-bg-color);
+  height: 100vh;
+}
+.terminalLoginContainer {
+  height: 100vh;
+}
+.loginButton {
+  width: 10em;
+  height: 10em;
+  margin-block: 1em;
+  margin-inline: 1em;
+  background-color: #861657;
+}

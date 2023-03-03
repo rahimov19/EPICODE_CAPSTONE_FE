@@ -21,7 +21,7 @@ export default function TerminalLogin() {
   const [password, setPassword] = useState("");
   const users = useSelector((state) => state.user.users);
   useEffect(() => {
-    saveUserAction([]);
+    dispatch(saveUserAction([]));
     document.querySelector("#passInput").focus();
   }, []);
   useEffect(() => {

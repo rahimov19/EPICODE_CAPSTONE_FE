@@ -24,3 +24,21 @@ body {
   margin-inline: 1em;
   background-color: #861657;
 }
+.navbarMain {
+  background-color: var(--less-bright-color);
+  height: 8vh;
+}
+.navbarMain button {
+  background-color: transparent;
+  border: none;
+  /* margin-inline: 1em; */
+  width: 10em;
+  border-radius: 0;
+  color: var(--font-color);
+  font-size: 1.5em;
+  padding: 0 !important ;
+}
+.navbarMain button:active,
+.navbarMain button:focus {
+  box-shadow: none;
+}

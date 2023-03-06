@@ -42,3 +42,19 @@ body {
 .navbarMain button:focus {
   box-shadow: none;
 }
+.table {
+  background-color: var(--less-bright-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--font-color);
+  font-size: 1.5em;
+  cursor: pointer;
+  /* border-radius: 50%; */
+}
+#layoutMainDiv {
+  background-color: var(--secondary-bg-color);
+  width: 100vw;
+  height: 92vh;
+  border: 2px solid #861657;
+}

@@ -58,3 +58,8 @@ body {
   height: 92vh;
   border: 2px solid #861657;
 }
+.card-img-top {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+}

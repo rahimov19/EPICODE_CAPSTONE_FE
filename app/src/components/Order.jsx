@@ -1,23 +1,24 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { Button, Card, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Order() {
+  const navigate = useNavigate();
   const [category, setCategory] = useState({});
   const [menuFiltered, setMenuFiltered] = useState([]);
+  const [check, setCheck] = useState([]);
   const categoryList = useSelector((state) => state.menu.categories);
   const menu = useSelector((state) => state.menu.menu);
   const location = useLocation();
   const table = location.state.table;
-  console.log(category);
   useEffect(() => {
     filterMenu();
   }, [category]);
 
   const filterMenu = () => {
     let filteredMenu = [];
-    console.log(menu);
     if (category.name) {
       filteredMenu = menu.filter((dish) => dish.category._id === category._id);
       setMenuFiltered(filteredMenu);
@@ -25,12 +26,61 @@ export default function Order() {
       console.log("nothing to filter");
     }
   };
+  const [sum, setSum] = useState(0);
+
+  const findTotal = () => {
+    let sumToCount = 0;
+    check.forEach((dish) => {
+      const dishTotal = dish.dish.price * dish.quantity;
+      sumToCount += dishTotal;
+    });
+    setSum(sumToCount);
+  };
+  const addToCheck = (dish) => {
+    const cheque = check;
+    const changableObj = cheque.findIndex((e) => e.dish._id === dish._id);
+    if (changableObj > -1) {
+      cheque[changableObj] = {
+        dish: dish,
+        quantity: cheque[changableObj].quantity + 1,
+      };
+      setCheck(cheque);
+      findTotal();
+    } else {
+      cheque.push({ dish: dish, quantity: 1 });
+      setCheck(cheque);
+      findTotal();
+    }
+  };
+
+  const removeFromCheck = (dish) => {
+    const cheque = check;
+    const changableObj = cheque.findIndex((e) => e.dish._id === dish.dish._id);
+    console.log(cheque[changableObj].quantity > 1);
+    if (cheque[changableObj].quantity > 1) {
+      cheque[changableObj] = {
+        ...cheque[changableObj],
+        quantity: cheque[changableObj].quantity - 1,
+      };
+      setCheck(cheque);
+      findTotal();
+    } else {
+      const filteredCheque = cheque.filter((e) => e.dish._id !== dish.dish._id);
+      setCheck(filteredCheque);
+      findTotal();
+    }
+  };
 
   return (
     <Container fluid>
       <Row>
-        <h4>{table.i}</h4>
-        <h5>{table.userId}</h5>
+        <div
+          className="m-4 w-100 d-flex flex-row-reverse"
+          onClick={() => navigate("/login")}
+        >
+          {" "}
+          <h5>{table.userName}</h5>
+        </div>
       </Row>
       <Row>
         <Col xs={8}>
@@ -39,8 +89,12 @@ export default function Order() {
               <Row>
                 {menuFiltered.map((dish) => (
                   <Col xs={3} className="mx-5">
-                    <Card style={{ width: "15em" }} className="mx-4">
-                      <Card.Img variant="top" src={dish.cover} />
+                    <Card
+                      style={{ width: "15em" }}
+                      className="mx-4"
+                      onClick={() => addToCheck(dish)}
+                    >
+                      <Card.Img variant="top" src={dish.image} />
                       <Card.Body>
                         <Card.Title>{dish.name}</Card.Title>
                         <h3>{dish.price}</h3>
@@ -64,7 +118,39 @@ export default function Order() {
             )}
           </Row>
         </Col>
-        <Col xs={4}>World</Col>
+        <Col xs={4}>
+          {" "}
+          {check.length > 0 ? (
+            <div>
+              <h2>Current Order</h2>
+              <h3>{table.i}</h3>{" "}
+              <div>
+                {check.map((dish) => (
+                  <div className="d-flex justify-content-between">
+                    <h5>{dish.dish.name}</h5>
+                    <h5>{dish.dish.price}</h5>
+                    <h5>{dish.quantity}</h5>
+                    <h5>{dish.quantity * dish.dish.price}</h5>
+                    <Button
+                      variant="danger"
+                      onClick={() => removeFromCheck(dish)}
+                    >
+                      -
+                    </Button>
+                  </div>
+                ))}
+              </div>
+              <h3>Total: {sum}</h3>
+            </div>
+          ) : (
+            <></>
+          )}
+          <div>
+            <Button>Save Cheque</Button>
+            <Button variant="danger">Delete Cheque</Button>
+            <Button variant="info">Print Cheque</Button>
+          </div>
+        </Col>
       </Row>
     </Container>
   );

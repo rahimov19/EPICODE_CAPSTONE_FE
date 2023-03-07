@@ -8,6 +8,7 @@ import Main from "./components/Main";
 import TerminalLogin from "./components/TerminalLogin";
 import Tables from "./components/Tables";
 import Order from "./components/Order";
+import Archive from "./components/Archive";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/main" element={<Main />} />
         <Route path="/tables" element={<Tables />} />
         <Route path="/order" element={<Order />} />
+        <Route path="/archive" element={<Archive />} />
       </Routes>
     </BrowserRouter>
   );

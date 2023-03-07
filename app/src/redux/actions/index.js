@@ -4,7 +4,28 @@ export const SAVE_USERS = "SAVE USERS";
 export const SAVE_TOKEN = "SAVE_TOKEN";
 export const FETCH_MENU = "FETCH_MENU";
 export const FETCH_CATS = "FETCH_CATS";
+
+export const FETCH_CHEQUES = "FETCH_CHEQUES";
+
 const apiUrl = process.env.REACT_APP_BE_URL;
+
+export const fetchChequesAction = (accessToken) => {
+  return async (dispatch, getState) => {
+    try {
+      const fetchChequesOptions = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await fetch(`${apiUrl}/cheques`, fetchChequesOptions);
+      const fetchedCheques = await response.json();
+      dispatch({ type: FETCH_CHEQUES, payload: fetchedCheques });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 
 export const saveUserAction = (user) => {
   return {

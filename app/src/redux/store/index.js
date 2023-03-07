@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   combineReducers,
   configureStore,
@@ -7,6 +8,7 @@ import { persistReducer, persistStore } from "redux-persist";
 import { encryptTransform } from "redux-persist-transform-encrypt";
 
 import storage from "redux-persist/lib/storage";
+import chequesReducer from "../reducers/chequesReducer";
 import menuReducer from "../reducers/menuReducer";
 import userReducer from "../reducers/userReducer";
 
@@ -26,6 +28,7 @@ const persistConfig = {
 const bigReducer = combineReducers({
   menu: menuReducer,
   user: userReducer,
+  cheques: chequesReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, bigReducer);

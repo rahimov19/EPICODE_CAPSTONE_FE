@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
   fetchCatsAction,
+  fetchChequesAction,
   fetchMenuAction,
   getUserAction,
   saveTokenAction,
@@ -48,6 +49,7 @@ export default function Login() {
     dispatch(fetchCatsAction(token));
     dispatch(fetchMenuAction(token));
     dispatch(getUserAction(token));
+    dispatch(fetchChequesAction(token));
   }, [token]);
   return (
     <div className="loginDiv">

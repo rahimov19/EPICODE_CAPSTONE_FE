@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
@@ -24,7 +25,17 @@ export default function Tables() {
           >
             Tables
           </Button>
-          {user.position.terminalAdmin ? <Button>Archive</Button> : <></>}
+          {user.position.terminalAdmin ? (
+            <Button
+              onClick={() => {
+                navigate("/archive");
+              }}
+            >
+              Archive
+            </Button>
+          ) : (
+            <></>
+          )}
         </Col>
         <Col className="d-flex flex-row-reverse">
           <Button onClick={() => navigate("/login")}>{user.name}</Button>

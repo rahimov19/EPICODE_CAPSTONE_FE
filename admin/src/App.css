@@ -1,0 +1,33 @@
+.userAva {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+.descRow {
+  font-size: 1.2em;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.66);
+}
+.imageList {
+  width: 40px;
+  height: 40px;
+}
+.gridTables {
+  background: black;
+  width: 800px;
+}
+.table {
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.inputTable {
+  max-width: 80%;
+  min-width: 2em;
+  border: none;
+  text-align: center;
+}
+.roundTable {
+  border-radius: 30% 30% 30% 30%;
+}

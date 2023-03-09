@@ -46,8 +46,7 @@ export default function TablesComp() {
           className="table"
           onClick={() =>
             table.active || table.userId === user._id
-              ? //   <Navigate to={"/order"} replace={true} state={{ table }} />
-                navigate("/order", { state: { table } })
+              ? navigate("/order", { state: { table } })
               : console.log("321")
           }
         >

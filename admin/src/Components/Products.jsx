@@ -28,6 +28,17 @@ export default function Products() {
   }, [filterQuery]);
 
   useEffect(() => {
+    if (editableElement.name) {
+      setName(editableElement.name);
+      setPrice(editableElement.price);
+      setCostPrice(editableElement.costPrice);
+      setDescription(editableElement.description);
+      setImage(editableElement.image);
+      setCategory(editableElement.category.name);
+    }
+  }, [editableElement]);
+
+  useEffect(() => {
     filterByCategories();
   }, [filterCategory]);
 
@@ -214,10 +225,10 @@ export default function Products() {
         </Row>
         <Row>
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Descriprion</Form.Label>
+            <Form.Label>Filter</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Product Description"
+              placeholder="Filter Products"
               defaultValue={editableElement.description}
               onChange={(e) => setFilterQuery(e.target.value)}
             />

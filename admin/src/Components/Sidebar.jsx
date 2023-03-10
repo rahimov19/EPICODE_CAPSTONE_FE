@@ -1,10 +1,12 @@
 import React from "react";
 import { Col } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { saveTokenAction } from "../redux/actions";
 
 export default function Sidebar() {
   const user = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <Col xs={2}>
@@ -124,10 +126,16 @@ export default function Sidebar() {
               Access
               <div className="text-secondary-500 ml-2"></div>
             </summary>
-            <div className="border-t border-t-gray-100 p-2 text-secondary-500 ml-2">
+            <div
+              className="border-t border-t-gray-100 p-2 text-secondary-500 ml-2"
+              onClick={() => navigate("/main/workers")}
+            >
               Workers
             </div>
-            <div className="border-t border-t-gray-100 p-2 text-secondary-500 ml-2">
+            <div
+              className="border-t border-t-gray-100 p-2 text-secondary-500 ml-2"
+              onClick={() => navigate("/main/positions")}
+            >
               Positions
             </div>
             <div className="border-t border-t-gray-100 p-2 text-secondary-500 ml-2">
@@ -166,9 +174,12 @@ export default function Sidebar() {
           </details>
         </div>
       </div>
-      <div className="d-flex align-items-center mt-2">
-        <img src={user.avatar} alt="" className="userAva" />{" "}
-        <h4 className="mt-2 ml-2">{user.name}</h4>
+      <div className="d-flex align-items-center justify-content-between mt-2">
+        <div className="d-flex align-items-center mt-2">
+          <img src={user.avatar} alt="" className="userAva" />{" "}
+          <h4 className="mt-2 ml-2">{user.name}</h4>
+        </div>
+        <div onClick={() => dispatch(saveTokenAction(""))}>Logout</div>
       </div>
     </Col>
   );

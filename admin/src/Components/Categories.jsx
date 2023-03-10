@@ -22,6 +22,13 @@ export default function Categories() {
     filterProducts();
   }, [filterQuery]);
 
+  useEffect(() => {
+    if (editableElement.name) {
+      setName(editableElement.name);
+      setCover(editableElement.cover);
+    }
+  }, [editableElement]);
+
   const filterProducts = () => {
     if (filterQuery.length !== 0) {
       const filteredProducts = bulkProducts.filter((pr) =>
@@ -166,10 +173,10 @@ export default function Categories() {
         </Row>
         <Row>
           <Form.Group controlId="exampleForm.ControlInput1">
-            <Form.Label>Descriprion</Form.Label>
+            <Form.Label>Filter</Form.Label>
             <Form.Control
               type="text"
-              placeholder="Product Description"
+              placeholder="Filter Categories"
               defaultValue={editableElement.description}
               onChange={(e) => setFilterQuery(e.target.value)}
             />

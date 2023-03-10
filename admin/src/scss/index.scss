@@ -1,3 +1,5 @@
+@import "./_variables.scss";
+
 .userAva {
   width: 40px;
   height: 40px;
@@ -23,29 +25,22 @@
   align-items: center;
 }
 .inputTable {
-  max-width: 50%;
+  max-width: 80%;
   min-width: 2em;
   border: none;
   text-align: center;
-  overflow: visible;
 }
 .roundTable {
   border-radius: 30% 30% 30% 30%;
 }
-.deleteTableButton {
-  opacity: 0;
-  position: absolute;
-  top: -0.6em;
-  right: -0.6em;
-  background-color: crimson;
-  padding-inline: 0.4em;
-  color: aliceblue;
-  border-radius: 50%;
-  transition: 0.3s;
-  cursor: pointer;
-  z-index: 2;
+
+h2 {
+  color: $primary;
 }
-.table:hover .deleteTableButton {
-  opacity: 1;
-  transition: 0.3s;
+
+h3 {
+  color: $primary;
+  a {
+    color: black;
+  }
 }

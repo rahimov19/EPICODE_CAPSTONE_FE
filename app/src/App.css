@@ -63,3 +63,8 @@ body {
   aspect-ratio: 1/1;
   object-fit: cover;
 }
+.gridTables {
+  background: black;
+  width: 100vw;
+  height: 100px;
+}

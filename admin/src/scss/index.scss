@@ -1,4 +1,14 @@
-@import "./_variables.scss";
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,500;1,200;1,900&family=Noto+Sans:wght@400;600;800&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
+
+img {
+  object-fit: cover;
+}
+
+body {
+  color: rgb(51, 0, 0);
+  font-family: "Montserrat", sans-serif;
+}
 
 .userAva {
   width: 40px;
@@ -25,22 +35,77 @@
   align-items: center;
 }
 .inputTable {
-  max-width: 80%;
+  max-width: 50%;
   min-width: 2em;
   border: none;
   text-align: center;
+  overflow: visible;
 }
 .roundTable {
   border-radius: 30% 30% 30% 30%;
 }
-
-h2 {
-  color: $primary;
+.deleteTableButton {
+  opacity: 0;
+  position: absolute;
+  top: -0.6em;
+  right: -0.6em;
+  background-color: crimson;
+  padding-inline: 0.4em;
+  color: aliceblue;
+  border-radius: 50%;
+  transition: 0.3s;
+  cursor: pointer;
+  z-index: 2;
+}
+.table:hover .deleteTableButton {
+  opacity: 1;
+  transition: 0.3s;
+}
+.logo {
+  width: 5em;
+}
+.sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
+  font-size: 1.2em;
+  div {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  .group {
+    height: 100%;
+    background-color: rgba(35, 16, 37, 0.09);
+    color: rgb(51, 0, 0);
+  }
+  .sidebarNavName {
+    cursor: pointer;
+  }
+  .userPanel {
+    background-color: rgba(35, 16, 37, 0.09);
+    margin-bottom: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.5em;
+    display: flex;
+    align-items: center;
+    div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    i {
+      font-size: 1.5em;
+      margin-right: 0.5em;
+      padding-top: 0.4em;
+    }
+  }
+}
+.sidebarNavName {
+  font-size: 1rem;
 }
 
-h3 {
-  color: $primary;
-  a {
-    color: black;
-  }
+.activeDiv {
+  background-color: aquamarine;
 }

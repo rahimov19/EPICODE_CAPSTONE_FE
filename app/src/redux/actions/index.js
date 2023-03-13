@@ -1,6 +1,6 @@
 export const SAVE_USER = "SAVE USER";
 export const SAVE_USERS = "SAVE USERS";
-
+export const FETCH_TABLE_POSITIONS = "FETCH_TABLE_POSITIONS";
 export const SAVE_TOKEN = "SAVE_TOKEN";
 export const FETCH_MENU = "FETCH_MENU";
 export const FETCH_CATS = "FETCH_CATS";
@@ -9,6 +9,26 @@ export const FETCH_CHEQUES = "FETCH_CHEQUES";
 
 const apiUrl = process.env.REACT_APP_BE_URL;
 
+export const fetchTablePositionsActions = (accessToken) => {
+  return async (dispatch, getState) => {
+    try {
+      const fetchTablePositionsOptions = {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      };
+      const response = await fetch(
+        `${apiUrl}/table`,
+        fetchTablePositionsOptions
+      );
+      const fetchedTables = await response.json();
+      dispatch({ type: FETCH_TABLE_POSITIONS, payload: fetchedTables });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+};
 export const fetchChequesAction = (accessToken) => {
   return async (dispatch, getState) => {
     try {

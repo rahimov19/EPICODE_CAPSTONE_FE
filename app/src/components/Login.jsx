@@ -7,6 +7,7 @@ import {
   fetchCatsAction,
   fetchChequesAction,
   fetchMenuAction,
+  fetchTablePositionsActions,
   getUserAction,
   saveTokenAction,
 } from "../redux/actions";
@@ -50,6 +51,7 @@ export default function Login() {
     dispatch(fetchMenuAction(token));
     dispatch(getUserAction(token));
     dispatch(fetchChequesAction(token));
+    dispatch(fetchTablePositionsActions(token));
   }, [token]);
   return (
     <div className="loginDiv">

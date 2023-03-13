@@ -1,3 +1,7 @@
+img {
+  object-fit: cover;
+}
+
 .userAva {
   width: 40px;
   height: 40px;
@@ -48,4 +52,14 @@
 .table:hover .deleteTableButton {
   opacity: 1;
   transition: 0.3s;
+}
+.logo {
+  width: 5em;
+}
+.sidebar {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  justify-content: space-between;
 }

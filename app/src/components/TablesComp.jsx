@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 export default function TablesComp() {
   const navigate = useNavigate();
   const user = useSelector((state) => state.user.user);
-  const layout = useSelector((state) => state.menu.tablePositions[0].schema[0]);
+  const layout = useSelector((state) => state.menu.tablePositions);
 
   return (
     <GridLayout
@@ -24,14 +24,21 @@ export default function TablesComp() {
       {layout.map((table) => (
         <div
           key={table.i}
-          className="table"
+          className={
+            !table.active || table.userId === user._id
+              ? "table"
+              : "table tableBusy"
+          }
           onClick={() =>
             !table.active || table.userId === user._id
               ? navigate("/order", { state: { table } })
               : console.log("321")
           }
         >
-          {table.tableName}
+          <div>
+            <p>{table.tableName}</p>
+            <p>{table.userName}</p>
+          </div>
         </div>
       ))}
     </GridLayout>

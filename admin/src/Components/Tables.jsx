@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable no-sequences */
 import React, { useEffect, useState } from "react";
 import { Button, Col, Form, Row } from "react-bootstrap";
 import GridLayout from "react-grid-layout";
@@ -61,8 +63,8 @@ export default function Tables() {
       );
       if (response.ok) {
         const schema = await response.json();
-        console.log(schema[0].schema[0]);
-        setLayout(schema[0].schema[0]);
+        console.log(schema[0].schema);
+        setLayout(schema[0].schema);
       }
     } catch (error) {
       console.log(error);
@@ -79,7 +81,7 @@ export default function Tables() {
         schema.push(lay)
       )
     );
-    const objToSend = { schema: [schema] };
+    const objToSend = { schema };
     try {
       const options = {
         method: "PUT",
@@ -174,27 +176,31 @@ export default function Tables() {
           setUpdated(true);
         }}
       >
-        {layout.map((table) => (
-          <div
-            key={table.i}
-            className={table.round ? "table roundTable" : "table"}
-            onDoubleClick={() => handleClick(table)}
-          >
-            <input
-              type="text"
-              className="inputTable"
-              defaultValue={table.tableName}
-              onChange={(e) => changeTableName(e, table)}
-              onFocus={(e) => (e.target.value = "")}
-            />
-            <span
-              className="deleteTableButton"
-              onClick={() => deleteTable(table)}
+        {layout.length !== 0 ? (
+          layout.map((table) => (
+            <div
+              key={table.i}
+              className={table.round ? "table roundTable" : "table"}
+              onDoubleClick={() => handleClick(table)}
             >
-              X
-            </span>
-          </div>
-        ))}
+              <input
+                type="text"
+                className="inputTable"
+                defaultValue={table.tableName}
+                onChange={(e) => changeTableName(e, table)}
+                onFocus={(e) => (e.target.value = "")}
+              />
+              <span
+                className="deleteTableButton"
+                onClick={() => deleteTable(table)}
+              >
+                X
+              </span>
+            </div>
+          ))
+        ) : (
+          <></>
+        )}
       </GridLayout>
       <Button onClick={() => submitSchema()}>Save Schema</Button>
     </Col>

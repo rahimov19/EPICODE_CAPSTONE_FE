@@ -34,13 +34,14 @@ export default function TerminalLogin() {
     if (user.length !== 0) {
       console.log(user[0]);
       dispatch(saveUserAction(user[0]));
-      navigate("/main");
+      navigate("/tables");
     }
   };
   return (
     <Container className="d-flex flex-column justify-content-center align-items-center terminalLoginContainer">
-      <InputGroup className="mb-3">
+      <InputGroup className="mb-3 passInput">
         <FormControl
+          type="password"
           placeholder="User Code"
           aria-label="User Code"
           aria-describedby="basic-addon1"

@@ -1,5 +1,5 @@
 :root {
-  --main-bg-color: #93e1d8;
+  --main-bg-color: #e3d4ff;
   --secondary-bg-color: #ffa69e;
   --font-color: #ddfff7;
   --bright-color: #861657;
@@ -17,11 +17,18 @@ body {
 .terminalLoginContainer {
   height: 100vh;
 }
+
+.passInput {
+  width: 50% !important;
+  height: 3em;
+}
+
 .loginButton {
-  width: 10em;
-  height: 10em;
-  margin-block: 1em;
-  margin-inline: 1em;
+  /* width: 10em; */
+  height: 15vh;
+  aspect-ratio: 1/1;
+  margin-block: 0.3em;
+  margin-inline: 0.3em;
   background-color: #861657;
 }
 .navbarMain {
@@ -43,7 +50,7 @@ body {
   box-shadow: none;
 }
 .table {
-  background-color: var(--less-bright-color);
+  background-color: #44aa4e;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,6 +58,9 @@ body {
   font-size: 1.5em;
   cursor: pointer;
   /* border-radius: 50%; */
+}
+.tableBusy {
+  background-color: var(--less-bright-color);
 }
 #layoutMainDiv {
   background-color: var(--secondary-bg-color);
@@ -67,4 +77,90 @@ body {
   background: black;
   width: 100vw;
   height: 100px;
+}
+.backDiv {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 12em;
+  height: 5em;
+  margin-bottom: 4em;
+  margin-left: 2em;
+  z-index: 999;
+}
+.backDiv button {
+  width: 100%;
+  height: 100%;
+}
+
+.buttonsDiv {
+  display: flex;
+  height: 8em;
+  width: 25%;
+  position: absolute;
+  bottom: 5em;
+  right: 0;
+  z-index: 999;
+}
+.buttonsDiv button {
+  margin-right: 1em;
+}
+.buttonTopLogout {
+  background-color: var(--font-color);
+  width: 5em !important;
+  height: 3em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 15px;
+  border: 1px solid var(--secondary-bg-color);
+  color: #861657;
+  margin-left: auto !important;
+  cursor: pointer;
+}
+.removeButton {
+  padding-inline: 0.8em;
+  padding-block: 0.2em;
+  margin-top: 0.2em;
+  opacity: 0;
+  transition: 0.5s;
+}
+
+.chequeRow:hover .removeButton {
+  opacity: 1;
+  transition: 0.5s;
+}
+.dishImage {
+  object-fit: cover;
+  width: 5em;
+  height: 5em;
+}
+.dishCard {
+  cursor: pointer;
+}
+.dishName {
+  white-space: nowrap;
+  /* overflow: hidden; */
+  text-emphasis: ellipsis;
+}
+.chequeRowNaming {
+  border-bottom: 1px solid var(--bright-color);
+  margin-bottom: 0.5em;
+}
+.guestChequeInput {
+  all: unset;
+  /* border: 1px solid black; */
+  height: 25px;
+}
+.discountInput {
+  width: 3em;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }

@@ -9,6 +9,13 @@ export const FETCH_CHEQUES = "FETCH_CHEQUES";
 
 const apiUrl = process.env.REACT_APP_BE_URL;
 
+export const updateTableState = (tables) => {
+  return {
+    type: FETCH_TABLE_POSITIONS,
+    payload: tables,
+  };
+};
+
 export const fetchTablePositionsActions = (accessToken) => {
   return async (dispatch, getState) => {
     try {
@@ -23,7 +30,10 @@ export const fetchTablePositionsActions = (accessToken) => {
         fetchTablePositionsOptions
       );
       const fetchedTables = await response.json();
-      dispatch({ type: FETCH_TABLE_POSITIONS, payload: fetchedTables });
+      dispatch({
+        type: FETCH_TABLE_POSITIONS,
+        payload: fetchedTables[0].schema,
+      });
     } catch (error) {
       console.log(error);
     }

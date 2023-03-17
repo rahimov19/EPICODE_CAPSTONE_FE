@@ -114,14 +114,17 @@ export default function Order() {
       userName: user.name,
       total: sum,
       table: currentTable.tableName,
+      creationTime: new Date(),
+      numberOfGuests: 1,
     };
     currentTable.active = true;
     currentTable.userId = user._id;
     currentTable.userName = user.name;
     const tableIndex = allTables.findIndex((tb) => tb.i === table.i);
     allTables[tableIndex] = currentTable;
-    console.log(allTables);
+
     dispatch(updateTableState(allTables));
+    navigate("/login");
   };
 
   const deleteChequeFunc = () => {
@@ -146,7 +149,7 @@ export default function Order() {
       discount: discountPercent,
       table: table.tableName,
       numberOfGuests: 1,
-      chequeTotal: totalSum,
+      chequeTotal: sum,
       amountPaid: amountPaid,
       status: "",
     };

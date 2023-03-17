@@ -17,7 +17,13 @@ export default function Tables() {
     <Container fluid>
       <Row className="navbarMain">
         <Col className="d-flex">
-          <Button>Orders</Button>
+          <Button
+            onClick={() => {
+              navigate("/orders");
+            }}
+          >
+            Orders
+          </Button>
           <Button
             onClick={() => {
               navigate("/tables");

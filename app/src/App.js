@@ -4,7 +4,7 @@ import "/node_modules/react-resizable/css/styles.css";
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Login from "./components/Login";
-import Main from "./components/Main";
+import Navbar from "./components/Navbar";
 import TerminalLogin from "./components/TerminalLogin";
 import Tables from "./components/Tables";
 import Order from "./components/Order";
@@ -17,7 +17,7 @@ function App() {
       <Routes>
         <Route path="/login" element={<TerminalLogin />} />
         <Route path="/" element={<Login />} />
-        <Route path="/main" element={<Main />} />
+        <Route path="/main" element={<Navbar />} />
         <Route path="/tables" element={<Tables />} />
         <Route path="/order" element={<Order />} />
         <Route path="/archive" element={<Archive />} />

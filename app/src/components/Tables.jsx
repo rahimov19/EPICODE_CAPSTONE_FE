@@ -3,6 +3,7 @@ import React, { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 import TablesComp from "./TablesComp";
 
 export default function Tables() {
@@ -15,38 +16,7 @@ export default function Tables() {
   }, []);
   return (
     <Container fluid>
-      <Row className="navbarMain">
-        <Col className="d-flex">
-          <Button
-            onClick={() => {
-              navigate("/orders");
-            }}
-          >
-            Orders
-          </Button>
-          <Button
-            onClick={() => {
-              navigate("/tables");
-            }}
-          >
-            Tables
-          </Button>
-          {user.position.terminalAdmin ? (
-            <Button
-              onClick={() => {
-                navigate("/archive");
-              }}
-            >
-              Archive
-            </Button>
-          ) : (
-            <></>
-          )}
-        </Col>
-        <Col className="d-flex flex-row-reverse">
-          <Button onClick={() => navigate("/login")}>{user.name}</Button>
-        </Col>
-      </Row>
+      <Navbar />
       <Row id="layoutMainDiv">
         <TablesComp />
       </Row>

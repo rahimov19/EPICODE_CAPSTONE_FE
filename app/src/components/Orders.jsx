@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import Navbar from "./Navbar";
 
 export default function Orders() {
   const tables = useSelector((state) => state.menu.tablePositions);
@@ -14,36 +15,11 @@ export default function Orders() {
 
   return (
     <Container fluid>
-      <Row className="navbarMain mb-4">
-        <Col className="d-flex">
-          <Button>Orders</Button>
-          <Button
-            onClick={() => {
-              navigate("/tables");
-            }}
-          >
-            Tables
-          </Button>
-          {user.position.terminalAdmin ? (
-            <Button
-              onClick={() => {
-                navigate("/archive");
-              }}
-            >
-              Archive
-            </Button>
-          ) : (
-            <></>
-          )}
-        </Col>
-        <Col className="d-flex flex-row-reverse">
-          <Button onClick={() => navigate("/login")}>{user.name}</Button>
-        </Col>
-      </Row>
-      <Row>
-        <Col xs={4}>
+      <Navbar />
+      <Row className="mt-4">
+        <Col className="archiveCol" xs={4}>
           {cheques.map((ch) => (
-            <Row onClick={() => setActiveCheque(ch)}>
+            <Row className="archiveRow" onClick={() => setActiveCheque(ch)}>
               <Col xs={9}>
                 <div>
                   <h4>
@@ -52,33 +28,35 @@ export default function Orders() {
                   <p>{ch.cheque.check[0].dish.name}</p>
                 </div>
               </Col>
-              <Col xs={3}>{ch.cheque.total} $</Col>
+              <Col className="archivePrice" xs={3}>
+                {ch.cheque.total} $
+              </Col>
             </Row>
           ))}
         </Col>
-        <Col xs={8}>
+        <Col className="archiveDetails" xs={8}>
           {activeCheque.userId ? (
             <div>
-              <Row className="mb-2">
+              <Row className="mb-2 archiveCheque">
                 <Col xs={6}>Waiter</Col>
                 <Col xs={6}>{activeCheque.cheque.userName}</Col>
               </Row>
-              <Row className="mb-2">
+              <Row className="mb-2 archiveCheque">
                 <Col xs={6}>Created</Col>
                 <Col xs={6}>
                   {" "}
                   {new Date(activeCheque.cheque.creationTime).toUTCString()}
                 </Col>
               </Row>
-              <Row className="mb-2">
+              <Row className="mb-2 archiveCheque">
                 <Col xs={6}>Table Number</Col>
                 <Col xs={6}>{activeCheque.tableName}</Col>
               </Row>
-              <Row className="mb-2">
+              <Row className="mb-2 archiveCheque">
                 <Col xs={6}>Number of Guests</Col>
                 <Col xs={6}>{activeCheque.cheque.numberOfGuests}</Col>
               </Row>
-              <div className="my-5">
+              <div className="my-5 chequeBottomPart">
                 <Row>
                   <Col xs={6}>
                     {" "}
@@ -113,11 +91,13 @@ export default function Orders() {
                 ))}
               </div>
               <div>
-                <Row>
+                <Row className="ordersTotal">
                   <Col xs={9}>
                     <h3>Total</h3>
                   </Col>
-                  <Col xs={3}>{activeCheque.cheque.total} $</Col>
+                  <Col xs={3}>
+                    <h3>{activeCheque.cheque.total} $</h3>
+                  </Col>
                 </Row>
               </div>
               <div></div>

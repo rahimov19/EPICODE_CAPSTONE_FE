@@ -56,8 +56,8 @@ export default function Login() {
   return (
     <div className="loginDiv">
       {" "}
-      <Container className="d-flex flex-column justify-content-center align-items-center h-100">
-        <h1 className="mb-5">Welcome to Mopster</h1>
+      <Container className="loginContainer d-flex flex-column justify-content-center align-items-center h-100">
+        <h1 className="mb-5 welcome">Welcome to Mopster</h1>
         <div>
           <InputGroup className="mb-3">
             <FormControl

@@ -192,7 +192,7 @@ export default function Order() {
   };
 
   return (
-    <Container fluid>
+    <Container fluid className="orderCont">
       <div className={check.length > 0 ? "buttonsDiv" : "d-none"}>
         <Button onClick={() => saveChequeFunc()}>Save Cheque</Button>
         <Button variant="danger" onClick={() => deleteChequeFunc()}>
@@ -208,10 +208,22 @@ export default function Order() {
       <Row>
         <div
           className="m-4 w-100 d-flex flex-row-reverse buttonTopLogout"
-          onClick={() => navigate("/login")}
+          onClick={() => navigate("/tables")}
         >
           {" "}
-          <h5>{user.name}</h5>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="30"
+            height="30"
+            fill="currentColor"
+            class="bi bi-arrow-left"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"
+            />
+          </svg>
         </div>
       </Row>
       <Row>
@@ -228,7 +240,7 @@ export default function Order() {
                       <Card.Body className="d-flex justify-content-between dishCard">
                         <Col xs={7}>
                           <h5 className="dishName">{dish.name}</h5>
-                          <h4>{dish.price}</h4>
+                          <h5>{dish.price}</h5>
                         </Col>
                         <Col xs={5}>
                           <img
@@ -244,9 +256,19 @@ export default function Order() {
               </Row>
             ) : (
               categoryList.map((cat) => (
-                <Col xs={3} onClick={() => setCategory(cat)}>
+                <Col
+                  xl={3}
+                  lg={4}
+                  md={6}
+                  xs={12}
+                  onClick={() => setCategory(cat)}
+                >
                   <Card style={{ width: "15em" }} className="mx-4">
-                    <Card.Img variant="top" src={cat.cover} />
+                    <Card.Img
+                      variant="top"
+                      src={cat.cover}
+                      className="cardImage"
+                    />
                     <Card.Body>
                       <Card.Title>{cat.name}</Card.Title>
                     </Card.Body>
@@ -256,30 +278,30 @@ export default function Order() {
             )}
           </Row>
         </Col>
-        <Col xs={4}>
+        <Col className="orderModal">
           {" "}
           {check.length > 0 ? (
             <div>
-              <h2>Current Order</h2>
-              <h3>Table: {table.tableName}</h3>{" "}
+              <h2 className="currentOrder">Current Order</h2>
+              <h3 className="tableOrder">Table: {table.tableName}</h3>{" "}
               <div>
-                <Row className="d-flex justify-content-between">
-                  <Col xs={5}>
-                    <h5>Name</h5>
+                <Row className="orderRow d-flex justify-content-between">
+                  <Col xl={5} lg={4} md={3}>
+                    <h5 className="orderCol">Name</h5>
                   </Col>
-                  <Col xs={2}>
-                    <h5>Price</h5>
+                  <Col xl={2} lg={2} md={3}>
+                    <h5 className="orderCol">Price</h5>
                   </Col>
-                  <Col xs={2}>
-                    <h5>Quantity</h5>
+                  <Col xl={2} lg={2} md={2}>
+                    <h5 className="orderCol">Q-ty</h5>
                   </Col>
-                  <Col xs={2}>
-                    <h5>Total</h5>
+                  <Col xl={2} lg={3} md={3}>
+                    <h5 className="orderCol">Total</h5>
                   </Col>
-                  <Col xs={1}></Col>
+                  <Col xl={1} lg={1} md={1}></Col>
                 </Row>
                 {check.map((dish) => (
-                  <Row className="d-flex justify-content-between chequeRow">
+                  <Row className="orderList d-flex justify-content-between chequeRow">
                     <Col xs={5}>
                       <h5>{dish.dish.name}</h5>
                     </Col>
@@ -304,7 +326,7 @@ export default function Order() {
                   </Row>
                 ))}
               </div>
-              <h3>Total: {sum}</h3>
+              <h3 className="tableOrder tableTotal">Total: {sum}</h3>
             </div>
           ) : (
             <></>
@@ -312,7 +334,13 @@ export default function Order() {
         </Col>
       </Row>
 
-      <Modal show={show} onHide={handleClose} backdrop="static" keyboard={true}>
+      <Modal
+        show={show}
+        onHide={handleClose}
+        backdrop="static"
+        keyboard={true}
+        className="closeChequeModal"
+      >
         <Modal.Header closeButton>
           <Modal.Title>Close Cheque</Modal.Title>
         </Modal.Header>
@@ -341,7 +369,7 @@ export default function Order() {
             </h5>
           </div>
 
-          <Row className="d-flex justify-content-between chequeRowNaming mt-4">
+          <Row className="d-flex justify-content-between chequeRowNaming mt-5">
             <Col xs={5}>
               <h6>Name</h6>
             </Col>
@@ -373,9 +401,9 @@ export default function Order() {
             </Row>
           ))}
 
-          <div>
-            <h4>Total: {sum}</h4>
-            <h4>
+          <div className="mt-4">
+            <h5 className="">Total: {sum}</h5>
+            <h5>
               Discount:{" "}
               <input
                 type={"number"}
@@ -398,9 +426,9 @@ export default function Order() {
                 className={"discountInput"}
               />{" "}
               $
-            </h4>
-            <h4>
-              Tip: $
+            </h5>
+            <h5>
+              Tip:
               <input
                 type={"number"}
                 value={tip}
@@ -408,11 +436,12 @@ export default function Order() {
                 onFocus={() => setTip("")}
                 className={"discountInput"}
               />
-            </h4>
+              $
+            </h5>
 
-            <h4>Total with disount: {sum - discountNumber + tip}</h4>
+            <h5>Total with disount: {sum - discountNumber + tip}</h5>
 
-            <h4>
+            <h5>
               Paid:{" "}
               <input
                 type={"number"}
@@ -425,9 +454,9 @@ export default function Order() {
                 className={"discountInput"}
               />
               $
-            </h4>
+            </h5>
 
-            <h4>
+            <h5>
               Change:{" "}
               <input
                 type={"number"}
@@ -436,7 +465,7 @@ export default function Order() {
                 className={"discountInput"}
               />
               $
-            </h4>
+            </h5>
           </div>
         </Modal.Body>
         <Modal.Footer>

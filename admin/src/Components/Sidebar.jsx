@@ -36,7 +36,12 @@ export default function Sidebar() {
               Statistic
               <div className="text-secondary-500 ml-2"></div>
             </summary>
-            <div className=" p-2 ml-2 sidebarNavName">Sales</div>
+            <div
+              className=" p-2 ml-2 sidebarNavName"
+              onClick={() => navigate("/main/sales")}
+            >
+              Sales
+            </div>
             <div className=" p-2 ml-2 sidebarNavName">Customers</div>
             <div className=" p-2 ml-2 sidebarNavName">Workers</div>
             <div className=" p-2 ml-2 sidebarNavName">Tables</div>

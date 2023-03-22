@@ -118,4 +118,14 @@ body {
 
 .activeDiv {
   background-color: aquamarine;
+}
+
+.salesTable .col {
+  border: 1px solid black;
+}
+
+.searchButton {
+  height: 2.5em;
+  margin-left: 1em;
+  margin-bottom: 0.5em;
 }/*# sourceMappingURL=index.css.map */

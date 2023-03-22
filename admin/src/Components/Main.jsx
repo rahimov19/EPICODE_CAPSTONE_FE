@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Categories from "./Categories";
 import Positions from "./Positions";
 import Products from "./Products";
+import Sales from "./Sales";
 import Sidebar from "./Sidebar";
 import Tables from "./Tables";
 import Terminals from "./Terminals";
@@ -22,6 +23,7 @@ export default function Main() {
             <Route path="/main/workers" element={<Workers />} />
             <Route path="/main/positions" element={<Positions />} />
             <Route path="/main/terminals" element={<Terminals />} />
+            <Route path="/main/sales" element={<Sales />} />
           </Routes>
         </BrowserRouter>
       </Row>

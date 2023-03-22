@@ -5,7 +5,14 @@
   --font-color: #00513e;
   --bright-color: #320047;
   --less-bright-color: #040007;
-  background: rgb(0, 0, 0);
+  overflow-x: hidden;
+
+  background: -moz-linear-gradient(
+    18deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgb(6, 0, 9, 1) 50%,
+    rgba(5, 0, 7, 1) 100%
+  );
 }
 body {
   background: rgb(0, 0, 0);

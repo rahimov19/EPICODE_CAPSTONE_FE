@@ -6,11 +6,11 @@ import { saveTokenAction } from "../redux/actions";
 
 export default function Sidebar() {
   const user = useSelector((state) => state.user.user);
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState();
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    setOpen(!open);
+    setOpen(Math.random());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [index]);
   const dispatch = useDispatch();
@@ -29,7 +29,7 @@ export default function Sidebar() {
         <div className="divide-y divide-gray-100 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
           <details
             className="group"
-            open={index === 1 ? true : false}
+            open={index === 1}
             onClick={() => setIndex(1)}
           >
             <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
@@ -50,8 +50,8 @@ export default function Sidebar() {
           </details>
           <details
             className="group"
-            open={index === 2 ? true : false}
             onClick={() => setIndex(2)}
+            open={index === 2}
           >
             <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
               Finance
@@ -63,7 +63,7 @@ export default function Sidebar() {
           </details>
           <details
             className="group"
-            open={index === 3 ? true : false}
+            open={index === 3}
             onClick={() => setIndex(3)}
           >
             <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
@@ -95,7 +95,7 @@ export default function Sidebar() {
           </details>
           <details
             className="group"
-            open={index === 4 ? true : false}
+            open={index === 4}
             onClick={() => setIndex(4)}
           >
             <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
@@ -111,7 +111,7 @@ export default function Sidebar() {
           </details>{" "}
           <details
             className="group"
-            open={index === 5 ? true : false}
+            open={index === 5}
             onClick={() => setIndex(5)}
           >
             <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
@@ -124,7 +124,7 @@ export default function Sidebar() {
           </details>{" "}
           <details
             className="group"
-            open={index === 6 ? true : false}
+            open={index === 6}
             onClick={() => setIndex(6)}
           >
             <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
@@ -153,7 +153,7 @@ export default function Sidebar() {
           </details>{" "}
           <details
             className="group"
-            open={index === 7 ? true : false}
+            open={index === 7}
             onClick={() => setIndex(7)}
           >
             <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
@@ -183,6 +183,7 @@ export default function Sidebar() {
           <i className="bi bi-door-open-fill"></i>
         </div>
       </div>
+      {index}
     </Col>
   );
 }

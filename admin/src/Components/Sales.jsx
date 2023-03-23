@@ -2,13 +2,14 @@
 import React, { useState, useEffect } from "react";
 import { Form, Button, Col, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { Line, ResponsiveLine } from "@nivo/line";
+import { Line } from "@nivo/line";
 
 const Sales = () => {
   const [sales, setSales] = useState([]);
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [salesChart, setSalesChart] = useState([]);
+  const [avgSum, setAvgSum] = useState({});
   const token = useSelector((state) => state.user.accessToken);
 
   const fetchData = async () => {
@@ -44,8 +45,8 @@ const Sales = () => {
       grouped[key] += cheque.chequeTotal;
     }
 
-    const start = new Date(Math.min(...data.map((c) => new Date(c.createdAt))));
-    const end = new Date(Math.max(...data.map((c) => new Date(c.createdAt))));
+    const start = new Date(startDate);
+    const end = new Date(endDate);
 
     for (let date = start; date <= end; date.setDate(date.getDate() + 1)) {
       const key = `${date.getDate()}/${date.getMonth() + 1}`;
@@ -56,6 +57,7 @@ const Sales = () => {
     }
 
     setSalesChart(salesChart);
+
     console.log(salesChart);
   };
 
@@ -68,6 +70,16 @@ const Sales = () => {
     setEndDate(endDate.toISOString().slice(0, 10));
   }
 
+  function calculateYStats() {
+    const total = salesChart[0].data.reduce((sum, { y }) => sum + y, 0);
+    const average = total / salesChart[0].data.length;
+    setAvgSum({ total, average });
+  }
+  useEffect(() => {
+    if (salesChart[0]) {
+      calculateYStats();
+    }
+  }, [salesChart]);
   useEffect(() => {
     setDateRange();
     fetchData();
@@ -102,46 +114,22 @@ const Sales = () => {
           <Button type="submit" className="searchButton">
             Search
           </Button>
+          {avgSum.total ? (
+            <div className="avgSumDiv">
+              <h3>Total Sales: {avgSum.total.toFixed(2)} $</h3>
+              <h3>Average Sales: {avgSum.average.toFixed(2)} $</h3>
+            </div>
+          ) : (
+            <></>
+          )}
         </Row>
       </Form>
-      <div className="salesTable">
-        <Row>
-          <Col>Cheque Number</Col>
-          <Col>Created At</Col>
-          <Col>Created By</Col>
-          <Col>Cheque Total</Col>
-          <Col>Discount %</Col>
-
-          <Col>Cheque Paid</Col>
-          <Col>Status</Col>
-        </Row>
-        {sales ? (
-          sales.map((sale) => (
-            <Row key={sale._id}>
-              <Col>{sale.chequeNumber}</Col>
-              <Col>
-                {sale.createdAt
-                  .replace("T", " ")
-                  .substring(0, sale.createdAt.length - 5)}
-              </Col>
-              <Col>{sale.createdBy.name}</Col>
-              <Col>{sale.chequeTotal}</Col>
-              <Col>{sale.discount}</Col>
-              <Col>{sale.amountPaid}</Col>
-              <Col>{sale.status}</Col>
-            </Row>
-          ))
-        ) : (
-          <></>
-        )}
-      </div>
-
       {salesChart[0] && salesChart[0].data.length !== 0 ? (
         <div>
           <Line
             className="chart"
-            width={1200}
-            height={400}
+            width={window.innerWidth - (window.innerWidth / 100) * 20}
+            height={300}
             lineWidth={5}
             data={salesChart}
             margin={{ top: 50, right: 110, bottom: 50, left: 60 }}
@@ -211,6 +199,38 @@ const Sales = () => {
       ) : (
         <></>
       )}
+
+      <div className="salesTable">
+        <Row>
+          <Col>Cheque Number</Col>
+          <Col>Created At</Col>
+          <Col>Created By</Col>
+          <Col>Cheque Total</Col>
+          <Col>Discount %</Col>
+
+          <Col>Cheque Paid</Col>
+          <Col>Status</Col>
+        </Row>
+        {sales ? (
+          sales.map((sale) => (
+            <Row key={sale._id}>
+              <Col># {sale.chequeNumber}</Col>
+              <Col>
+                {sale.createdAt
+                  .replace("T", " ")
+                  .substring(0, sale.createdAt.length - 5)}
+              </Col>
+              <Col>{sale.createdBy.name}</Col>
+              <Col>{sale.chequeTotal}</Col>
+              <Col>{sale.discount}</Col>
+              <Col>{sale.amountPaid}</Col>
+              <Col>{sale.status}</Col>
+            </Row>
+          ))
+        ) : (
+          <></>
+        )}
+      </div>
     </Col>
   );
 };

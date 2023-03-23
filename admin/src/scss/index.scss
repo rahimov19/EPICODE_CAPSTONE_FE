@@ -113,11 +113,21 @@ body {
   border: 1px solid black;
 }
 .searchButton {
-  height: 2.5em;
+  height: 2.2em;
   margin-left: 1em;
-  margin-bottom: 0.5em;
+  margin-top: auto;
+  margin-bottom: 0.55em;
 }
 
-.chart {
-  background-color: aqua !important;
+.salesTable {
+  height: 30vh;
+  overflow-y: scroll;
+  margin-right: 1em;
+  padding-inline: 1em;
+  overflow-x: hidden;
+}
+.avgSumDiv {
+  margin-left: auto;
+  margin-right: 2em;
+  text-align: end;
 }

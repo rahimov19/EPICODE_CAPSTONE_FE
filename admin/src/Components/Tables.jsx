@@ -142,7 +142,7 @@ export default function Tables() {
   };
 
   return (
-    <Col>
+    <Col className="ml-3 mt-4">
       <h2>Table Schema</h2>
       <Row className="d-flex ml-2 mb-3">
         {" "}

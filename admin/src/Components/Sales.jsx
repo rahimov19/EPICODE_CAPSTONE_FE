@@ -199,18 +199,34 @@ const Sales = () => {
       ) : (
         <></>
       )}
+      <div className="salesTable2">
+        <Row>
+          <Col className="d-flex justify-content-center align-items-center salesRow">
+            Cheque Number
+          </Col>
+          <Col className="d-flex justify-content-center align-items-center salesRow">
+            Created At
+          </Col>
+          <Col className="d-flex justify-content-center align-items-center salesRow">
+            Created By
+          </Col>
+          <Col className="d-flex justify-content-center align-items-center salesRow">
+            Cheque Total
+          </Col>
+          <Col className="d-flex justify-content-center align-items-center salesRow">
+            Discount %
+          </Col>
+
+          <Col className="d-flex justify-content-center align-items-center salesRow">
+            Cheque Paid
+          </Col>
+          <Col className="d-flex justify-content-center align-items-center salesRow">
+            Status
+          </Col>
+        </Row>
+      </div>
 
       <div className="salesTable">
-        <Row>
-          <Col>Cheque Number</Col>
-          <Col>Created At</Col>
-          <Col>Created By</Col>
-          <Col>Cheque Total</Col>
-          <Col>Discount %</Col>
-
-          <Col>Cheque Paid</Col>
-          <Col>Status</Col>
-        </Row>
         {sales ? (
           sales.map((sale) => (
             <Row key={sale._id}>

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button, Modal } from "react-bootstrap";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 export default function CloseSessionModal() {
   const [show, setShow] = useState(false);
@@ -9,7 +10,7 @@ export default function CloseSessionModal() {
   const [cashInReg, setCashInReg] = useState(0);
 
   const cheques = useSelector((state) => state.cheques.cheques);
-
+  const navigate = useNavigate();
   const todaySales = function getTotalSum() {
     let total = 0;
     for (let i = 0; i < cheques.length; i++) {
@@ -34,6 +35,10 @@ export default function CloseSessionModal() {
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+  const closeSession = () => {
+    handleClose();
+    navigate("/");
+  };
   return (
     <>
       <div className="dropdown-item dropDownItem" onClick={handleShow}>
@@ -105,7 +110,7 @@ export default function CloseSessionModal() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
+          <Button variant="primary" onClick={closeSession}>
             Close Session
           </Button>
         </Modal.Footer>

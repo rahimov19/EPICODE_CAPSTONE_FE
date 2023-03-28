@@ -1,6 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
-import { Button, Container, FormControl, InputGroup } from "react-bootstrap";
+import {
+  Button,
+  Container,
+  FormControl,
+  InputGroup,
+  Toast,
+} from "react-bootstrap";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -13,6 +19,7 @@ import {
 } from "../redux/actions";
 
 export default function Login() {
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [token, setToken] = useState();
@@ -39,9 +46,18 @@ export default function Login() {
         setTimeout(() => {
           navigate("/login");
         }, 1000);
+      } else {
+        setShow(true);
       }
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const submitEnter = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      submitHandler(e);
     }
   };
 
@@ -55,12 +71,30 @@ export default function Login() {
   }, [token]);
   return (
     <div className="loginDiv">
-      {" "}
+      <Toast
+        onClose={() => setShow(false)}
+        show={show}
+        delay={3000}
+        autohide
+        className="toastLogin"
+        style={{
+          position: "absolute",
+          top: 10,
+          right: 15,
+        }}
+      >
+        <Toast.Header>
+          <strong className="mr-auto">Error</strong>
+          <small className="mr-2">Login</small>
+        </Toast.Header>
+        <Toast.Body>Terminal Login or Password is wrong</Toast.Body>
+      </Toast>{" "}
       <Container className="loginContainer d-flex flex-column justify-content-center align-items-center h-100">
         <h1 className="mb-5 welcome">Welcome to Mopster</h1>
         <div>
           <InputGroup className="mb-3">
             <FormControl
+              onKeyDown={(e) => submitEnter(e)}
               placeholder="Username"
               aria-label="Username"
               aria-describedby="basic-addon1"
@@ -69,6 +103,8 @@ export default function Login() {
           </InputGroup>
           <InputGroup className="mb-3">
             <FormControl
+              onKeyDown={(e) => submitEnter(e)}
+              type="password"
               placeholder="Terminal Code"
               aria-label="Terminal Code"
               aria-describedby="basic-addon1"
@@ -76,7 +112,12 @@ export default function Login() {
             />
           </InputGroup>
         </div>
-        <Button onClick={(e) => submitHandler(e)}>Log In</Button>
+        <Button
+          onClick={(e) => submitHandler(e)}
+          onKeyDown={(e) => submitEnter(e)}
+        >
+          Log In
+        </Button>
       </Container>
     </div>
   );

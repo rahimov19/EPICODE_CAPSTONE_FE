@@ -157,7 +157,7 @@ export default function Terminals() {
 
   return (
     <>
-      <Col>
+      <Col className="ml-3 mt-2">
         <Row className="d-flex justify-content-between my-4">
           <div>
             <h4>Terminals: {terminals.length}</h4>

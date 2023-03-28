@@ -1,41 +1,61 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { saveTokenAction } from "../redux/actions";
+import Collapse, { Panel } from "rc-collapse";
+import motion from "./_util/motionUtil";
 
 export default function Sidebar() {
   const user = useSelector((state) => state.user.user);
-  const [open, setOpen] = useState();
-  const [index, setIndex] = useState(0);
+  const [activeKey, setActiveKey] = useState(["0"]);
+  const arrowPath =
+    "M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h-88" +
+    ".5c-7.4 0-10.8 9.2-5.2 14l350.2 304H152c-4.4 0-8 3.6-8 8v60c0 4.4 3." +
+    "6 8 8 8h585.1L386.9 854c-5.6 4.9-2.2 14 5.2 14h91.5c1.9 0 3.8-0.7 5." +
+    "2-2L869 536.2c14.7-12.8 14.7-35.6 0-48.4z";
+  function expandIcon({ isActive }) {
+    return (
+      <i style={{ marginRight: ".5rem" }}>
+        <svg
+          viewBox="0 0 1024 1024"
+          width="1em"
+          height="1em"
+          fill="currentColor"
+          style={{
+            verticalAlign: "-.125em",
+            transition: "transform .2s",
+            transform: `rotate(${isActive ? 90 : 0}deg)`,
+          }}
+        >
+          <path d={arrowPath} />
+        </svg>
+      </i>
+    );
+  }
 
-  useEffect(() => {
-    setOpen(Math.random());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [index]);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
     <Col xs={2} className="sidebar">
-      <div className="my-4 d-flex align-items-end">
-        <img
-          src="/54580d586a59e096a5813d643c2d1665.png"
-          className="logo"
-          alt="logo"
-        />
-        <h4 className="mt-1">RMS</h4>
-      </div>
-      <div className="group">
-        <div className="divide-y divide-gray-100 overflow-hidden rounded-lg border border-gray-200 bg-white shadow-sm">
-          <details
-            className="group"
-            open={index === 1}
-            onClick={() => setIndex(1)}
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
-              Statistic
-              <div className="text-secondary-500 ml-2"></div>
-            </summary>
+      <div className="sidebarDiv">
+        <div className="my-4 d-flex align-items-end">
+          <img
+            src="/54580d586a59e096a5813d643c2d1665.png"
+            className="logo"
+            alt="logo"
+          />
+          <h4 className="mt-1">MopAdmin</h4>
+        </div>
+
+        <Collapse
+          accordion={true}
+          onChange={setActiveKey}
+          activeKey={activeKey}
+          expandIcon={expandIcon}
+          openMotion={motion}
+        >
+          <Panel header="Statistic">
             <div
               className=" p-2 ml-2 sidebarNavName"
               onClick={() => navigate("/main/sales")}
@@ -47,29 +67,13 @@ export default function Sidebar() {
             <div className=" p-2 ml-2 sidebarNavName">Tables</div>
             <div className=" p-2 ml-2 sidebarNavName">Cheques</div>
             <div className=" p-2 ml-2 sidebarNavName">Payments</div>
-          </details>
-          <details
-            className="group"
-            onClick={() => setIndex(2)}
-            open={index === 2}
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
-              Finance
-              <div className="text-secondary-500 ml-2"></div>
-            </summary>
+          </Panel>
+          <Panel header="Finance">
             <div className=" p-2 ml-2 sidebarNavName">Transactions</div>
             <div className=" p-2 ml-2 sidebarNavName">Reports</div>
             <div className=" p-2 ml-2 sidebarNavName">Salaries</div>
-          </details>
-          <details
-            className="group"
-            open={index === 3}
-            onClick={() => setIndex(3)}
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
-              Menu
-              <div className="text-secondary-500 ml-2"></div>
-            </summary>
+          </Panel>
+          <Panel header="Menu">
             <div
               className=" p-2 ml-2 sidebarNavName"
               onClick={() => {
@@ -92,45 +96,34 @@ export default function Sidebar() {
             <div className=" p-2 ml-2 sidebarNavName">
               Ingridients Categories
             </div>
-          </details>
-          <details
-            className="group"
-            open={index === 4}
-            onClick={() => setIndex(4)}
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
-              Warehouse
-              <div className="text-secondary-500 ml-2"></div>
-            </summary>
+          </Panel>
+          <Panel header="Warehouse">
             <div className=" p-2 ml-2 sidebarNavName">Remains</div>
             <div className=" p-2 ml-2 sidebarNavName">Supplies</div>
             <div className=" p-2 ml-2 sidebarNavName">Decommissioning</div>
             <div className=" p-2 ml-2 sidebarNavName">Inventory</div>
             <div className=" p-2 ml-2 sidebarNavName">Suppliers</div>
             <div className=" p-2 ml-2 sidebarNavName">Warehouses</div>
-          </details>{" "}
-          <details
-            className="group"
-            open={index === 5}
-            onClick={() => setIndex(5)}
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
-              Marketing
-              <div className="text-secondary-500 ml-2"></div>
-            </summary>
+          </Panel>
+          <Panel header="Marketing">
             <div className=" p-2 ml-2 sidebarNavName">Customers</div>
             <div className=" p-2 ml-2 sidebarNavName">Customer groups</div>
             <div className=" p-2 ml-2 sidebarNavName">Actions</div>
-          </details>{" "}
-          <details
-            className="group"
-            open={index === 6}
-            onClick={() => setIndex(6)}
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
-              Access
-              <div className="text-secondary-500 ml-2"></div>
-            </summary>
+          </Panel>
+          <Panel header="Access">
+            <div className=" p-2 ml-2 sidebarNavName">Main Settings</div>
+            <div className=" p-2 ml-2 sidebarNavName">Payments</div>
+            <div className=" p-2 ml-2 sidebarNavName">Orders</div>
+            <div
+              className=" p-2 ml-2 sidebarNavName"
+              onClick={() => navigate("/main/tables")}
+            >
+              Tables
+            </div>
+            <div className=" p-2 ml-2 sidebarNavName">Security</div>
+            <div className=" p-2 ml-2 sidebarNavName">Cheque</div>
+          </Panel>
+          <Panel header="Settings">
             <div
               className=" p-2 ml-2 sidebarNavName"
               onClick={() => navigate("/main/workers")}
@@ -150,29 +143,8 @@ export default function Sidebar() {
               Terminals
             </div>
             <div className=" p-2 ml-2 sidebarNavName">Integrations</div>
-          </details>{" "}
-          <details
-            className="group"
-            open={index === 7}
-            onClick={() => setIndex(7)}
-          >
-            <summary className="flex cursor-pointer list-none items-center justify-between p-2 text-lg font-medium text-secondary-900 group-open:bg-gray-50">
-              Settings
-              <div className="text-secondary-500 ml-2"></div>
-            </summary>
-            <div className=" p-2 ml-2 sidebarNavName">Main Settings</div>
-            <div className=" p-2 ml-2 sidebarNavName">Payments</div>
-            <div className=" p-2 ml-2 sidebarNavName">Orders</div>
-            <div
-              className=" p-2 ml-2 sidebarNavName"
-              onClick={() => navigate("/main/tables")}
-            >
-              Tables
-            </div>
-            <div className=" p-2 ml-2 sidebarNavName">Security</div>
-            <div className=" p-2 ml-2 sidebarNavName">Cheque</div>
-          </details>
-        </div>
+          </Panel>
+        </Collapse>
       </div>
       <div className="d-flex align-items-center justify-content-between mt-2 userPanel">
         <div className="d-flex align-items-center mt-2">
@@ -183,7 +155,6 @@ export default function Sidebar() {
           <i className="bi bi-door-open-fill"></i>
         </div>
       </div>
-      {index}
     </Col>
   );
 }

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import { Button, Col, Container, Form, Row, Toast } from "react-bootstrap";
 import { saveTokenAction, saveUserAction } from "../redux/actions";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [show, setShow] = useState(false);
   const dispatch = useDispatch();
 
   const submitHandle = async (e) => {
@@ -29,6 +30,8 @@ export default function Login() {
         console.log(user);
         dispatch(saveTokenAction(user.accessToken));
         dispatch(saveUserAction(user.user));
+      } else {
+        setShow(true);
       }
     } catch (error) {
       console.log(error);
@@ -37,17 +40,20 @@ export default function Login() {
   return (
     <Container
       fluid
-      className="d-flex justify-content-center align-items-center h-100 mt-5"
+      className="d-flex justify-content-center align-items-center mt-5 loginContainer"
     >
-      <Row>
-        <Col xs={6}>
+      <Row className="w-100 d-flex justify-content-center ">
+        <Col xs={5} className="loginImgCol pr-0">
           <img
-            src="http://placekitten.com/1200/400"
+            src="https://www.trendreport.de/wp-content/uploads/2019/05/camera-coffee-composition-1509428-scaled.jpg"
             alt="kit"
-            className="w-100"
+            className="loginImg"
           />
         </Col>
-        <Col xs={6}>
+        <Col
+          xs={5}
+          className="d-flex justify-content-center py-4 loginRow pl-0"
+        >
           <div>
             <h2>Log in</h2>{" "}
             <Form>
@@ -71,20 +77,40 @@ export default function Login() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </Form.Group>
-              <Form.Group className="mb-3" controlId="formBasicCheckbox">
+              <Form.Group className="mb-3 mr-5" controlId="formBasicCheckbox">
                 <Form.Check type="checkbox" label="Check me out" />
               </Form.Group>
-              <Button
-                variant="primary"
-                type="submit"
-                onClick={(e) => submitHandle(e)}
-              >
-                Log In
-              </Button>
+              <div className="d-flex justify-content-between">
+                {" "}
+                <Button
+                  variant="primary"
+                  type="submit"
+                  onClick={(e) => submitHandle(e)}
+                >
+                  Log In
+                </Button>
+                <p className="pForgot">Forgot Password?</p>
+              </div>
             </Form>
           </div>
         </Col>
       </Row>
+      <Toast
+        onClose={() => setShow(false)}
+        show={show}
+        delay={5000}
+        autohide
+        style={{
+          position: "absolute",
+          top: 20,
+          right: 20,
+        }}
+      >
+        <Toast.Header>
+          <strong className="mr-auto">Login</strong>
+        </Toast.Header>
+        <Toast.Body>Provided Login or Password are not valid!</Toast.Body>
+      </Toast>
     </Container>
   );
 }

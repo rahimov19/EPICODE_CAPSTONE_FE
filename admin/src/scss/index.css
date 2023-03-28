@@ -31,6 +31,26 @@ body {
   width: 800px;
 }
 
+.sidebarDiv {
+  background-color: rgb(255, 241, 253);
+  height: 100%;
+  padding-left: 1em;
+}
+
+.rc-collapse-header {
+  display: flex;
+  margin-top: 0.5em;
+  cursor: pointer;
+}
+
+.sidebar {
+  padding: 0;
+}
+
+.salesRow {
+  border: 1px solid black;
+}
+
 .table {
   background: white;
   display: flex;
@@ -48,6 +68,35 @@ body {
 
 .roundTable {
   border-radius: 30% 30% 30% 30%;
+}
+
+.loginImg {
+  max-height: 40vh;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: 100%;
+  border-radius: 15px 0 0 15px;
+}
+
+.loginContainer {
+  display: flex;
+  align-items: center;
+  height: 44vh;
+}
+
+.loginImgCol {
+  width: 100%;
+}
+
+.pForgot {
+  color: rgb(0, 48, 90);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.loginRow {
+  background-color: rgba(230, 230, 230, 0.73);
+  border-radius: 0 15px 15px 0;
 }
 
 .deleteTableButton {
@@ -139,8 +188,24 @@ body {
   overflow-x: hidden;
 }
 
+.salesTable2 {
+  margin-right: 2em;
+  padding-inline: 1em;
+}
+
 .avgSumDiv {
   margin-left: auto;
   margin-right: 2em;
   text-align: end;
+}
+
+.rc-collapse-content-inactive div {
+  display: none;
+  color: aqua;
+}
+
+.rc-collapse-content-active div {
+  color: rgb(49, 0, 67);
+  text-decoration: underline;
+  padding-left: 0.5em;
 }/*# sourceMappingURL=index.css.map */

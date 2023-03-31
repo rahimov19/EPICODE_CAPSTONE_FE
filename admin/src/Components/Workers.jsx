@@ -245,7 +245,7 @@ export default function Workers() {
         </Row>
         {workers.length !== 0 && positions.length !== 0 ? (
           workers.map((pr) => (
-            <Row className="mt-1" key={pr._id}>
+            <Row className="mt-1 mappedRow" key={pr._id}>
               <Col>{pr.name}</Col>
               <Col>
                 <img src={pr.avatar} alt="avatar" className="imageList" />
@@ -256,6 +256,7 @@ export default function Workers() {
               <Col className="d-flex justify-content-between">
                 {pr.salary}{" "}
                 <Button
+                  className="mappedButton"
                   onClick={() => {
                     setEditableElement(pr);
                     handleShow();

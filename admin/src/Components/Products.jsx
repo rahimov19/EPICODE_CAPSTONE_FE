@@ -254,13 +254,14 @@ export default function Products() {
         </Row>
         {products.length !== 0 ? (
           products.map((pr) => (
-            <Row className="mt-1" key={pr._id}>
+            <Row className="mt-1 mappedRow" key={pr._id}>
               <Col>{pr.name}</Col>
               <Col>{pr.category.name}</Col>
               <Col>{pr.costPrice}</Col>
               <Col className="d-flex justify-content-between">
                 {pr.price}{" "}
                 <Button
+                  className="mappedButton"
                   onClick={() => {
                     setEditableElement(pr);
                     handleShow();

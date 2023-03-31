@@ -142,17 +142,21 @@ export default function Tables() {
   };
 
   return (
-    <Col className="ml-3 mt-4">
+    <Col xs={5} className="ml-3 mt-4">
       <h2>Table Schema</h2>
-      <Row className="d-flex ml-2 mb-3">
+      <Row className="d-flex ml-2 mb-3 justify-content-between">
         {" "}
-        <Form.Group controlId="exampleForm.ControlSelect1">
-          <Form.Label>Category</Form.Label>
-          <Form.Control as="select">
-            <option>Room</option>
-          </Form.Control>
-        </Form.Group>{" "}
-        <Button onClick={() => addTable()} className="mt-4 ml-4">
+        <div className="d-flex align-items-end">
+          {" "}
+          <Form.Group controlId="exampleForm.ControlSelect1">
+            <Form.Label>Category</Form.Label>
+            <Form.Control as="select">
+              <option>Room</option>
+            </Form.Control>
+          </Form.Group>{" "}
+          <p className="ml-4">Edit</p>
+        </div>
+        <Button onClick={() => addTable()} className="mt-4">
           Add Table
         </Button>
       </Row>
@@ -202,7 +206,9 @@ export default function Tables() {
           <></>
         )}
       </GridLayout>
-      <Button onClick={() => submitSchema()}>Save Schema</Button>
+      <Button className="mt-3 " onClick={() => submitSchema()}>
+        Save Schema
+      </Button>
     </Col>
   );
 }

@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from "react";
 import { Col } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +9,8 @@ import motion from "./_util/motionUtil";
 
 export default function Sidebar() {
   const user = useSelector((state) => state.user.user);
+  const token = useSelector((state) => state.user.accessToken);
+
   const [activeKey, setActiveKey] = useState(["0"]);
   const arrowPath =
     "M869 487.8L491.2 159.9c-2.9-2.5-6.6-3.9-10.5-3.9h-88" +
@@ -33,7 +36,11 @@ export default function Sidebar() {
       </i>
     );
   }
-
+  useEffect(() => {
+    if (!token) {
+      navigate("/login");
+    }
+  }, []);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   return (
@@ -45,7 +52,11 @@ export default function Sidebar() {
             className="logo"
             alt="logo"
           />
-          <h4 className="mt-1">MopAdmin</h4>
+
+          <h3 className="mt-1">
+            {" "}
+            <b>MopAdmin </b>
+          </h3>
         </div>
 
         <Collapse

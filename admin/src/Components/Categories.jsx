@@ -188,12 +188,13 @@ export default function Categories() {
         </Row>
         {categories.length !== 0 ? (
           categories.map((pr) => (
-            <Row className="mt-1" key={pr._id}>
+            <Row className="mt-1 mappedRow" key={pr._id}>
               <Col>{pr.name}</Col>
 
               <Col className="d-flex justify-content-between">
                 <img src={pr.cover} alt="cover" className="imageList" />
                 <Button
+                  className="mappedButton"
                   onClick={() => {
                     setEditableElement(pr);
                     handleShow();

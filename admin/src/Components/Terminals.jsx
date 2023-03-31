@@ -195,13 +195,14 @@ export default function Terminals() {
         </Row>
         {terminals.length !== 0 ? (
           terminals.map((pr) => (
-            <Row className="mt-1" key={pr._id}>
+            <Row className="mt-1 mappedRow" key={pr._id}>
               <Col>{pr.name}</Col>
               <Col>{pr.terminalCode}</Col>
 
               <Col className="d-flex justify-content-between">
                 {pr.active ? <p>V</p> : <p>X</p>}
                 <Button
+                  className="mappedButton"
                   onClick={() => {
                     setEditableElement(pr);
                     handleShow();

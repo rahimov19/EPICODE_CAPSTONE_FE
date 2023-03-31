@@ -27,7 +27,6 @@ export default function Login() {
       );
       if (response.ok) {
         const user = await response.json();
-        console.log(user);
         dispatch(saveTokenAction(user.accessToken));
         dispatch(saveUserAction(user.user));
       } else {

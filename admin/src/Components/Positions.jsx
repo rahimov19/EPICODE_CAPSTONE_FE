@@ -215,7 +215,7 @@ export default function Positions() {
         </Row>
         {positions.length !== 0 ? (
           positions.map((pr) => (
-            <Row className="mt-1" key={pr._id}>
+            <Row className="mt-1 mappedRow" key={pr._id}>
               <Col>{pr.name}</Col>
               <Col>{pr.stats ? <p>v</p> : <p>x</p>}</Col>
               <Col>{pr.finance ? <p>v</p> : <p>x</p>}</Col>
@@ -226,6 +226,7 @@ export default function Positions() {
               <Col className="d-flex justify-content-between">
                 {pr.terminalAdmin ? <p>v</p> : <p>x</p>}
                 <Button
+                  className="mappedButton"
                   onClick={() => {
                     setEditableElement(pr);
                     handleShow();

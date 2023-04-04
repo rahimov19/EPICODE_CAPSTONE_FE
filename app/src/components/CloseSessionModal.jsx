@@ -98,6 +98,11 @@ export default function CloseSessionModal() {
           <div className="d-flex justify-content-between mb-3">
             <h2>Difference:</h2>
             <input
+              style={
+                cashInReg - totalPaid < 0
+                  ? { color: "red" }
+                  : { color: "green" }
+              }
               type="number"
               name="today"
               id="today"

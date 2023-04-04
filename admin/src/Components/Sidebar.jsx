@@ -121,20 +121,8 @@ export default function Sidebar() {
             <div className=" p-2 ml-2 sidebarNavName">Customer groups</div>
             <div className=" p-2 ml-2 sidebarNavName">Actions</div>
           </Panel>
+
           <Panel header="Access">
-            <div className=" p-2 ml-2 sidebarNavName">Main Settings</div>
-            <div className=" p-2 ml-2 sidebarNavName">Payments</div>
-            <div className=" p-2 ml-2 sidebarNavName">Orders</div>
-            <div
-              className=" p-2 ml-2 sidebarNavName"
-              onClick={() => navigate("/main/tables")}
-            >
-              Tables
-            </div>
-            <div className=" p-2 ml-2 sidebarNavName">Security</div>
-            <div className=" p-2 ml-2 sidebarNavName">Cheque</div>
-          </Panel>
-          <Panel header="Settings">
             <div
               className=" p-2 ml-2 sidebarNavName"
               onClick={() => navigate("/main/workers")}
@@ -154,6 +142,19 @@ export default function Sidebar() {
               Terminals
             </div>
             <div className=" p-2 ml-2 sidebarNavName">Integrations</div>
+          </Panel>
+          <Panel header="Settings">
+            <div className=" p-2 ml-2 sidebarNavName">Main Settings</div>
+            <div className=" p-2 ml-2 sidebarNavName">Payments</div>
+            <div className=" p-2 ml-2 sidebarNavName">Orders</div>
+            <div
+              className=" p-2 ml-2 sidebarNavName"
+              onClick={() => navigate("/main/tables")}
+            >
+              Tables
+            </div>
+            <div className=" p-2 ml-2 sidebarNavName">Security</div>
+            <div className=" p-2 ml-2 sidebarNavName">Cheque</div>
           </Panel>
         </Collapse>
       </div>

@@ -27,7 +27,19 @@ body {
 }
 .gridTables {
   background: black;
+  padding: 0;
+
   width: 800px;
+  background: url(../../public/manage-grid-bg.png) -10px -10px;
+  background-color: rgba(0, 0, 0, 0);
+  background-position-x: -10px;
+  background-position-y: -10px;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-image: url("../../public/manage-grid-bg.png");
+  background-size: auto;
+  background-origin: padding-box;
+  background-clip: border-box;
 }
 .sidebarDiv {
   background-color: rgba(232, 232, 232, 0.681);
@@ -48,17 +60,20 @@ body {
 }
 
 .table {
-  background: white;
+  background: rgb(82, 82, 82);
   display: flex;
   justify-content: center;
   align-items: center;
+  margin: 0;
 }
 .inputTable {
+  background: rgb(82, 82, 82);
   max-width: 50%;
   min-width: 2em;
   border: none;
   text-align: center;
   overflow: visible;
+  color: aliceblue;
 }
 .roundTable {
   border-radius: 30% 30% 30% 30%;

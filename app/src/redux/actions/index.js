@@ -50,7 +50,7 @@ export const fetchChequesAction = (accessToken) => {
       };
       const response = await fetch(`${apiUrl}/cheques`, fetchChequesOptions);
       const fetchedCheques = await response.json();
-      dispatch({ type: FETCH_CHEQUES, payload: fetchedCheques });
+      dispatch({ type: FETCH_CHEQUES, payload: fetchedCheques.reverse() });
     } catch (error) {
       console.log(error);
     }

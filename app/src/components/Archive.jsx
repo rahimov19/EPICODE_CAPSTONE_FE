@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { Button, Col, Container, Row } from "react-bootstrap";
+import { Col, Container, Row } from "react-bootstrap";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+
 import Navbar from "./Navbar";
 
 export default function Archive() {
   const cheques = useSelector((state) => state.cheques.cheques);
-  const navigate = useNavigate();
-  const user = useSelector((state) => state.user.user);
+
   const [activeCheque, setActiveCheque] = useState({});
   const num =
     activeCheque.chequeTotal -

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500;700&display=swap");
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 :root {
   --main-bg-color: #000000;
   --secondary-bg-color: #fff1e3;
@@ -211,7 +212,6 @@ input {
   background-color: var(--bright-color);
   color: var(--font-color);
   border: 2px solid var(--bright-color);
-  color: var(--font-color);
 }
 .dropDownMenu {
   background-color: var(--less-bright-color);
@@ -288,7 +288,10 @@ input {
   width: 100%;
   height: 90%;
 }
-
+input:disabled {
+  background-color: #fff1e3;
+  color: #14001d;
+}
 .cardImage {
   width: 100% !important;
   aspect-ratio: 12/8 !important;
@@ -385,12 +388,12 @@ input {
   padding-block: 0.2em;
   margin-top: 0.2em;
   opacity: 0;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 
 .chequeRow:hover .removeButton {
   opacity: 1;
-  transition: 0.5s;
+  transition: 0.2s;
 }
 .dishImage {
   object-fit: cover;
